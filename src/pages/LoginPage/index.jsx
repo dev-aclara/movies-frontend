@@ -11,13 +11,13 @@ function LoginPage() {
               <h1>Entre em sua conta</h1>
               <form>
                 <div className="input_wrap">
-                  <input type="text" placeholder="Email"></input>
+                  <input type="text" placeholder="Email" required></input>
                 </div>
-				<br />
+				        <br />
                 <div className="input_wrap">
-                  <input type="password" placeholder="Senha"></input>
+                  <input type="password" placeholder="Senha" required></input>
                 </div>
-				<br />
+				        <br />
                 <div className="input_wrap">
                   <button>Entrar</button>
                 </div>
@@ -25,7 +25,6 @@ function LoginPage() {
             </div>
           </div>
         </div>
-		
     );
   }
   
