@@ -82,7 +82,17 @@ button{
 }
 
 button:hover{
-    background: rgb(252,160,211)
+    background: rgb(252,160,211);
+}
+
+.btnEntrar{
+    text-decoration: none;
+}
+
+a{
+    text-decoration-color: none;
+    color: #fffbfc;
+    font-weight: bold;
 }
 
 
