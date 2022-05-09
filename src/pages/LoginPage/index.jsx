@@ -1,80 +1,73 @@
 import React, { Component } from 'react';
+import { Navigate } from 'react-router';
 import '../LoginPage/styles.css';
-import { Navigate } from 'react-router-dom';
 
 export default class login extends Component{
-  constructor(props){
-    super(props);
-    this.state={
-        email : '',
-        senha : '',
-        navigate: false,
-        mgs:'',
-        user: [],
+    constructor(props){
+        super(props);
+        this.state={
+            email : '',
+            senha : '',
+            redirect:false,
+            user:[],
+        }
+
+        this.login = this.login.bind(this);
     }
 
-    this.login = this.login.bind(this);
-  }
+    login(){
+        var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+    
+        var raw = JSON.stringify({
+            "email": this.state.email,
+            "senha": this.state.senha
+        });
 
-  login(e){
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
 
-    var raw = JSON.stringify({
-      "email": this.state.email,
-      "senha": this.state.senha,
-    });
+        fetch("http://localhost:21262/login", requestOptions)
+        .then(response => response.json())
+        .then(response => {if(response === 1){
+          alert("E-mail ou senha inválidos");
+        }else{
+          this.setState({user:response || [], redirect:true})
+        }})
 
-    var requestOptions = {
-      method: 'POST',
-      headers: myHeaders,
-      body: raw,
-      redirect: 'follow'
-    };
-
-    fetch("http://localhost:21262/login", requestOptions)
-      .then(response => response.json())
-      .then(response => {if(response === 1){
-        this.setState({mgs:"Email ou senha invalidos"})
-      }else{
-        this.setState({navigate: true})
-      }})
-      .catch(error => console.log('error', error));
-
+        .catch(error => console.log('error', error));
+            
+        console.log(this.state.user);
+            
     }
     render(){
-      if(this.state.navigate){
-        sessionStorage.setItem('@web/email', this.state.email);
-        return  <Navigate to={{ pathname: "/dashboard"}} replace/>
-      }
-      else{
-        return (
-          <React.Fragment>
-          <div className="LoginPage">
-              <div className="login_body">
-                <div className="login_box">
-                  <h1>Entre em sua conta</h1>
-                  <form onSubmit={this.login}>
+        if(this.state.redirect){
+            sessionStorage.setItem('@web/id', this.state.user.id)
+            sessionStorage.setItem('@web/email', this.state.user.email)
+        
+            return <Navigate to={{ pathname: "/dashboard" }} />
+        }
+        return(
+            <React.Fragment>
+            <div className="login_body">
+              <div className="login_box">
+                <h1>Entre em sua conta</h1>
+                <form onSubmit={()=> this.login}>
+                    <input  className="input_wrap" type="text" value={this.state.email} onChange={(e) => this.setState({email: e.target.value})} placeholder="Email"></input>
+                    <input  className="input_wrap"  type="password" value={this.state.senha} onChange={(e) => this.setState({senha: e.target.value})} placeholder="Senha"></input>
                     <div className="input_wrap">
-                      <input type="text" placeholder="Email" value={this.state.email} onChange={(e) => this.setState({email: e.target.value})}  required></input>
+                    <button type="button" onClick={this.login} name="" value="Login">Entrar</button>
                     </div>
-                    <br />
-                    <div className="input_wrap">
-                      <input type="password" placeholder="Senha" value={this.state.senha} onChange={(e) => this.setState({senha: e.target.value})} required></input>
-                    </div>
-                    <br />
-                    <div className="input_wrap">
-                    <button>Entrar</button>
-                    </div>
-                    <a href="/">Não se cadastrou ainda? Clique aqui</a>
-                  </form>
+
+                    <a href="/register">Não se cadastrou ainda? Clique aqui</a>
+                </form>
                 </div>
-              </div>
-            </div>\
-          </React.Fragment>
-        );
-      } 
+            </div>
+            </React.Fragment>
+            );
+        }
     }
-  }
-
-
