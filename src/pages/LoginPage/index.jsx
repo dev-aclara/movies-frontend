@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../LoginPage/styles.css';
-import { Link } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 export default class login extends Component{
   constructor(props){
@@ -8,6 +8,9 @@ export default class login extends Component{
     this.state={
         email : '',
         senha : '',
+        navigate: false,
+        mgs:'',
+        user: [],
     }
 
     this.login = this.login.bind(this);
@@ -20,7 +23,6 @@ export default class login extends Component{
     var raw = JSON.stringify({
       "email": this.state.email,
       "senha": this.state.senha,
-      "pessoa": []
     });
 
     var requestOptions = {
@@ -32,39 +34,47 @@ export default class login extends Component{
 
     fetch("http://localhost:21262/login", requestOptions)
       .then(response => response.json())
-      .then(result => console.log(result))
+      .then(response => {if(response === 1){
+        this.setState({mgs:"Email ou senha invalidos"})
+      }else{
+        this.setState({navigate: true})
+      }})
       .catch(error => console.log('error', error));
+
     }
     render(){
-      sessionStorage.setItem('@web/email', this.state.email );
-      return (
-        <React.Fragment>
-        <div className="LoginPage">
-            <div className="login_body">
-              <div className="login_box">
-                <h1>Entre em sua conta</h1>
-                <form onSubmit={this.login}>
-                  <div className="input_wrap">
-                    <input type="text" placeholder="Email" value={this.state.email} onChange={(e) => this.setState({email: e.target.value})}  required></input>
-                  </div>
-                  <br />
-                  <div className="input_wrap">
-                    <input type="password" placeholder="Senha" value={this.state.senha} onChange={(e) => this.setState({senha: e.target.value})} required></input>
-                  </div>
-                  <br />
-                  <div className="input_wrap">
-                  <Link to={"/dashboard"} className="btnEntrar"><button>Entrar</button></Link>
-                  </div>
-                  <a href="/">Não se cadastrou ainda? Clique aqui</a>
-                </form>
+      if(this.state.navigate){
+        sessionStorage.setItem('@web/email', this.state.email);
+        return  <Navigate to={{ pathname: "/dashboard"}} replace/>
+      }
+      else{
+        return (
+          <React.Fragment>
+          <div className="LoginPage">
+              <div className="login_body">
+                <div className="login_box">
+                  <h1>Entre em sua conta</h1>
+                  <form onSubmit={this.login}>
+                    <div className="input_wrap">
+                      <input type="text" placeholder="Email" value={this.state.email} onChange={(e) => this.setState({email: e.target.value})}  required></input>
+                    </div>
+                    <br />
+                    <div className="input_wrap">
+                      <input type="password" placeholder="Senha" value={this.state.senha} onChange={(e) => this.setState({senha: e.target.value})} required></input>
+                    </div>
+                    <br />
+                    <div className="input_wrap">
+                    <button>Entrar</button>
+                    </div>
+                    <a href="/">Não se cadastrou ainda? Clique aqui</a>
+                  </form>
+                </div>
               </div>
-            </div>
-          </div>
-
-        </React.Fragment>
-      );
+            </div>\
+          </React.Fragment>
+        );
+      } 
     }
-    
   }
 
 
