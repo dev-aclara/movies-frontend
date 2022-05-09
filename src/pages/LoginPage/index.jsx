@@ -16,29 +16,27 @@ export default class login extends Component{
   login(e){
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    myHeaders.append("Cookie", "essecookie=s%3A6l2S6RMFeX9oX0acmwegmPkQ1mtCDfET.%2FQRi8Wp4RtRTxjodKW1O5N9OsjBiIv1zXg5u%2FCEDZB0");
-  
+
     var raw = JSON.stringify({
-      "email":this.state.email,
-      "senha":this.state.senha});
-  
+      "email": this.state.email,
+      "senha": this.state.senha,
+      "pessoa": []
+    });
+
     var requestOptions = {
       method: 'POST',
       headers: myHeaders,
       body: raw,
       redirect: 'follow'
     };
-  
+
     fetch("http://localhost:21262/login", requestOptions)
       .then(response => response.json())
-      .then(response => {if(response === 1){
-        this.setState({mgs:"Email ou senha invalidos"})
-      }})
+      .then(result => console.log(result))
       .catch(error => console.log('error', error));
-      
-      e.preventDefault()
     }
     render(){
+      sessionStorage.setItem('@web/email', this.state.email );
       return (
         <React.Fragment>
         <div className="LoginPage">

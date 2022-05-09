@@ -8,6 +8,7 @@ import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import Dashboard from './pages/Dashboard';
 
+
 const routes = () => {
     return(
         <Router>
