@@ -1,4 +1,9 @@
-h3{
-    color: black;
+span{
+    background: rgb(249,2,139);
+    background: linear-gradient(90deg, rgba(249,2,139,0.7357317927170868) 0%, rgba(73,72,235,0.9290091036414566) 100%);
+    
+    background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    font-weight: bolder;
+    font-size: 25px;
 }
-

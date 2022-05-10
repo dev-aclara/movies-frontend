@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-
-import '../Dashboard/styles.css';
+import Header from '../../componentes/Header/Header';
+import './styles.css';
 
 export default class Dashboard extends Component{
   constructor(props){
@@ -12,13 +12,12 @@ export default class Dashboard extends Component{
     render(){
       return (
         <React.Fragment>
+        <style>{"body { background-color: #ffff; }"}</style>
         <div className="Dashboard">
-          <h3>Olá, {this.state.email}</h3>
-          <div className="login_body">
-              <div className="login_box">
-              <h1>Perfis</h1>
-              </div>
-            </div>
+          <Header />
+          <br />
+          <span>Olá, {this.state.email}</span>
+          
         </div>
         </React.Fragment>
       );

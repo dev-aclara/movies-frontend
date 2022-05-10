@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import '../LoginPage/styles.css';
-
 export default class Cadastro extends Component{
 
   constructor(props){
@@ -44,8 +43,8 @@ export default class Cadastro extends Component{
         .catch(error => console.log('error', error));
 
         e.preventDefault()
-  }
 
+  }
 
   render(){
     return(

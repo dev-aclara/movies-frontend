@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Navigate } from 'react-router';
 import '../LoginPage/styles.css';
-
 export default class login extends Component{
     constructor(props){
         super(props);
@@ -57,14 +56,19 @@ export default class login extends Component{
               <div className="login_box">
                 <h1>Entre em sua conta</h1>
                 <form onSubmit={()=> this.login}>
-                    <input  className="input_wrap" type="text" value={this.state.email} onChange={(e) => this.setState({email: e.target.value})} placeholder="Email"></input>
-                    <input  className="input_wrap"  type="password" value={this.state.senha} onChange={(e) => this.setState({senha: e.target.value})} placeholder="Senha"></input>
+                    <div className="input_wrap">
+                    <input type="text" value={this.state.email} onChange={(e) => this.setState({email: e.target.value})} placeholder="Email" autoComplete="on" required></input>
+                    </div>
+				    <br />
+                    <div className="input_wrap">
+                    <input type="password" value={this.state.senha} onChange={(e) => this.setState({senha: e.target.value})} placeholder="Senha" autoComplete="off" required></input>
+                    </div>
                     <div className="input_wrap">
                     <button type="button" onClick={this.login} name="" value="Login">Entrar</button>
                     </div>
-
-                    <a href="/register">Não se cadastrou ainda? Clique aqui</a>
                 </form>
+                <a href="/register">Não se cadastrou ainda? Clique aqui</a> 
+                <br></br>
                 </div>
             </div>
             </React.Fragment>

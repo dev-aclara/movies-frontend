@@ -1,3 +1,4 @@
+import React, { Component }  from 'react';
 import {
     BrowserRouter as Router,
     Route,
@@ -8,8 +9,6 @@ import {
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import Dashboard from './pages/Dashboard';
-
-
 
 const routes = () => {
     return(
