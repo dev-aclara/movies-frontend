@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Header from '../../componentes/Header/Header';
+import Header from '../../componentes/Header/Header.jsx';
 import './styles.css';
+import Card from '../../componentes/Card/Card.jsx';
 
 export default class Dashboard extends Component{
   constructor(props){
@@ -17,6 +18,15 @@ export default class Dashboard extends Component{
           <Header />
           <br />
           <span>Olá, {this.state.email}</span>
+          <div className="container">
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+         
+          </div>
           
         </div>
         </React.Fragment>
