@@ -35,8 +35,7 @@ export default class Cadastro extends Component{
           if(response === "Já existe esse email"){
             alert('Já existe esse email cadastrado')
           }else{
-            alert('Cadastro feito com sucesso')
-            
+           alert("Cadastro feito com sucesso!")
           }
         })
         .then(result => console.log(result))

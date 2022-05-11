@@ -1,26 +1,21 @@
 import React, { Component }  from 'react';
-import { AiOutlineSearch } from 'react-icons/ai';
-import './styles.css';
+import {Link} from 'react-router-dom';
+let API_key = '&api_key=4aa8fb17eef1b70a40e280f7822e4cbe';
+let base_url ='https://api.themoviedb.org/3';
+let url =base_url+"/discover/movie?sort_by=popularity.desc"+API_key;
 
 
 export default function Header (){
     return(
-        <div className="header">
+        <div className="header-principal">
             <header>
-            <nav>
-                <ul>
-                    <li><a href="#">Teste</a></li>
-                    <li><a href="#">Teste</a></li>
-                    <li><a href="#">Teste</a></li>
-                    <li><a href="#">Teste</a></li>
-                    <li><a href="#">Teste</a></li>
-                </ul>
-            </nav>
-
-            <div className='botao-pesquisa'>
-                <input type="text" placeholder='Pesquisar' className='inputText'></input>
-                <AiOutlineSearch />
+            <Link className='logo' to='/dashboard'>
+            </Link>
+            <div className='header-logo'>
+                <p>TMDB's archive</p>
             </div>
+            <Link className='favoritos' to='/favoritos'>
+            </Link>
             </header>
         </div>
     )

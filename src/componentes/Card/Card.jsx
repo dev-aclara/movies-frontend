@@ -1,19 +1,18 @@
-import react from "react";
-import '../Header/styles.css';
+import React from "react";
+import '../Main/styles.css';
 
-
-const Card=()=>{
+const Card=(movie)=>{
+    let img_path="https://image.tmdb.org/t/p/w500";
     return(
         <>
             <div className="movie">
-                <img src="https://static.stealthelook.com.br/wp-content/uploads/2022/03/qual-a-serie-o-filme-e-o-livro-mais-lido-do-mundo-avatar-20220321164246.jpg" className="poster"></img>
+            <img src={img_path+movie.info.poster_path} className="poster"></img>
                 <div className="movie-details">
                     <div className="box">
-                        <h4 className="title">Título</h4>
+                        <h4 className="title">{movie.info.title}</h4>
                     </div>
                     <div className="overview">
-                        <h1>overview</h1>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        {movie.info.overview}
                     </div>
                 </div>
             </div>
