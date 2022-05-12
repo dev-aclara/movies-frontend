@@ -149,7 +149,7 @@ h4{
     color: rgba(249,2,139,0.7357317927170868);
 }
 
-.logo, .favoritos{
+.header-logo p, .btn-sair a{
     color: #fff;
     cursor: pointer;
     font-size: 40px;
@@ -158,12 +158,8 @@ h4{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    text-decoration-color: none;
     
-}
-
-.header-logo p{
-    color: #fff;
-    font-size: 40px;
 }
 
 .notfound{

@@ -1,14 +1,14 @@
-import React, { Component }  from 'react';
+import React from 'react';
 import {
     BrowserRouter as Router,
     Route,
     Routes,
-    Navigate
+    Navigate,
 } from "react-router-dom";
 
-import HomePage from './pages/HomePage';
-import LoginPage from './pages/LoginPage';
-import Dashboard from './pages/Dashboard';
+import HomePage from '../pages/HomePage';
+import LoginPage from '../pages/LoginPage';
+import Dashboard from '../pages/Dashboard';
 
 const routes = () => {
     return(
@@ -17,7 +17,8 @@ const routes = () => {
                 <Route path="*" element={<Navigate to="/" replace />}/>
                 <Route path="/" element={<HomePage/>}></Route>
                 <Route path="/login" element={<LoginPage/>}></Route>
-                <Route path="/dashboard" element={<Dashboard/>}></Route>
+                <Route path="/dashboard" element={<Dashboard/>} isPrivate></Route>
+                
             </Routes>
         </Router>
     )

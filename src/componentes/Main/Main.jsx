@@ -1,10 +1,11 @@
 import React,{useState, useEffect} from "react";
 import Card from '../Card/Card.jsx';
 import '../Main/styles.css';
+
 let API_key = '&api_key=4aa8fb17eef1b70a40e280f7822e4cbe';
 let base_url ='https://api.themoviedb.org/3';
 let url =base_url+"/discover/movie?sort_by=popularity.desc"+API_key;
-let arr=["Popular","Infantis","Drama","Comédias"];
+let arr=["Popular","Música","Romances","Comédia"];
 
 const Main=()=>{
     const [movieData,setData]=useState([]);
@@ -17,19 +18,19 @@ const Main=()=>{
     },[url_set])
 
     const getData=(movieType)=>{
-        if(movieType==="Popular")
+        if(movieType === "Popular")
         {
             url=base_url+"/discover/movie?sort_by=popularity.desc"+API_key;
         }
-        if(movieType==="Infantis")
+        if(movieType === "Música")
         {
-            url=base_url+"/discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc"+API_key;
+            url=base_url+"/discover/movie?with_genres=10402"+API_key;
         }
-        if(movieType==="Drama")
+        if(movieType === "Romances")
         {
-            url=base_url+"/discover/movie?with_genres=18&primary_release_year=2014"+API_key;
+            url=base_url+"/discover/movie?with_genres=10749"+API_key;
         }
-        if(movieType==="Comédias")
+        if(movieType ==="Comédia")
         {
             url=base_url+"/discover/movie?with_genres=35&with_cast=23659&sort_by=revenue.desc"+API_key;
         }
@@ -53,12 +54,11 @@ const Main=()=>{
             <nav>
                 <ul>
                 {
-                            arr.map((value,pos)=>{
-                                return(
-                                    <li><a href="#" key={pos} name={value} onClick={(e)=>{getData(e.target.name)}}>{value}</a></li>
-                                )
-                            })
-                        }
+                    arr.map((value,pos)=>{
+                    return(
+                    <li><a href="#" key={pos} name={value} onClick={(e)=>{getData(e.target.name)}}>{value}</a></li>
+                    )})
+                }
                 </ul>
             </nav>
 
